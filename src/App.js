@@ -7,7 +7,7 @@ import TaskDisplay from './TaskDisplay';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{'display': 'flex'}}>
         <ProgressDisplay />
         <TaskDisplay />
       </div>

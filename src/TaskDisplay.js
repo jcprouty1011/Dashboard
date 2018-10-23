@@ -1,12 +1,13 @@
 import React from 'react';
 import TaskTable from './TaskTable';
+import TaskChart from './TaskChart';
 
 class TaskDisplay extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      status: 'table',
+      status: 'waiting',
       taskData: []
     };
   }
@@ -22,7 +23,7 @@ class TaskDisplay extends React.Component {
     }, error => {
       console.log("Could not get the task data.")
     }).then(jsonResponse => {
-      this.setState({taskData: jsonResponse.taskData});
+      this.setState({status: 'chart', taskData: jsonResponse.taskData});
     });
 
     //TEST CODE
@@ -30,7 +31,7 @@ class TaskDisplay extends React.Component {
   }
 
   render() {
-    return <TaskTable status={this.state.status} taskData={this.state.taskData} />;
+    return <TaskChart status={this.state.status} taskData={this.state.taskData} />;
   }
 }
 
