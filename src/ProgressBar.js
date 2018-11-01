@@ -11,9 +11,15 @@ class ProgressBar extends Component {
       width: this.props.innerWidth,
       height: this.props.innerHeight
     };
+    const targetStyle = {
+      width: this.props.targetWidth,
+      height: this.props.targetHeight
+    };
     return (
       <div className="progress-bar" style={outerStyle}>
         <div className="inner-bar" style={innerStyle}>
+        </div>
+        <div className="target-bar" style={targetStyle}>
         </div>
       </div>
     );
