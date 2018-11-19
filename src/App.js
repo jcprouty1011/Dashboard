@@ -14,8 +14,12 @@ class App extends Component {
         compared to a target percentage for this time of day.</p>
         <ProgressDisplay />
         <h2>Recent Productivity Scores</h2>
+        <p>The percentage of allotted time completed each day in the past week
+        compared to the goal, along with time spent on optional tasks.</p>
         <TaskDisplay />
         <h2>Data For Today</h2>
+        <p>A quick way to enter information one keeps track of each day, such as
+        hours of sleep.</p>
         <DataEntry />
       </div>
     );
