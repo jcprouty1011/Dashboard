@@ -9,7 +9,9 @@ class App extends Component {
   render() {
     return (
       <div className='outer-div'>
-        <h2>Progress Today</h2>
+        <h2>Progress on Today's Tasks</h2>
+        <p>The percentage of allotted time for today's tasks completed thus far,
+        compared to a target percentage for this time of day.</p>
         <ProgressDisplay />
         <h2>Recent Productivity Scores</h2>
         <TaskDisplay />
