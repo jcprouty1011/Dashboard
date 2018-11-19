@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import DatumForm from './DatumForm';
 
 class DataEntry extends React.Component {
@@ -45,8 +46,12 @@ class DataEntry extends React.Component {
       return <h2>Awaiting data...</h2>;
     }
 
-    const datumForms = this.state.dataTypes.map((row) => {
-      return <DatumForm key={row.data} data={row.data} label={row.label} clickFunction={this.sendDataToDB} />
+    const datumForms = this.state.dataTypes.map((row, i) => {
+      return (
+        <CSSTransition key={row.data} classNames="example" timeout={{ enter: 500, exit: 500 }}>
+          <DatumForm key={row.data} data={row.data} label={row.label} clickFunction={this.sendDataToDB} />
+        </CSSTransition>
+      );
     });
 
     if (!datumForms[0]) {
@@ -54,9 +59,9 @@ class DataEntry extends React.Component {
     }
 
     return (
-      <div className="data-entry">
+      <TransitionGroup className="data-entry">
         {datumForms}
-      </div>
+      </TransitionGroup>
     );
   }
 }

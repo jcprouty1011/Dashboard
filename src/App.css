@@ -34,9 +34,11 @@
 
 .inner-bar {
   background-color: hsl(40, 80%, 80%);
+  opacity: 0.8;
   border-radius: 5px;
   margin: 0 5px;
   z-index: 1;
+  transition: width 1s;
 }
 
 .target-bar {
@@ -46,6 +48,8 @@
   margin: 0 5px;
   position: absolute;
   z-index: 0;
+  transition: width 0.5s;
+  -moz-transition: width 0.5s;
 }
 
 .progress-display {
@@ -53,8 +57,12 @@
   flex-direction: column;
   align-items: center;
   background-color: #DDF;
-  padding: 30px 50px 50px 50px;
+  padding: 30px 50px 30px 50px;
   border: 1px solid black;
+}
+
+.progress-display p {
+  font-size: 10px;
 }
 
 .outer-div {
@@ -73,10 +81,18 @@
 }
 
 .data-form-box {
+  height: 20px;
   margin: 10px 0;
   display: grid;
   grid-template-columns: 300px 100px 100px;
   grid-column-gap: 10px;
+}
+
+.example-exit-active {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  transition: opacity 0.5s, height 0.5s, margin 0.5s;
 }
 
 .data-form-box label {

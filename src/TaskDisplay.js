@@ -14,6 +14,7 @@ class TaskDisplay extends React.Component {
 
   componentDidMount() {
     //Retrieve data from server
+    //208.113.134.207
     fetch('http://localhost:3001/weektaskdata').then(response => {
       if (response.ok) {
         return response.json();

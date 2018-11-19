@@ -6,11 +6,15 @@ class TaskChart extends React.Component {
       return <h2>Awaiting data...</h2>;
     } else if (this.props.status === 'chart') {
       const yVals = this.props.taskData.map((element) => {
-        const heightInner = 400 * element[3] / 600;
-        const heightOuter = 400 * element[4] / 600;
+        const heightOuter = 400 * element[3] / 600;
+        const heightInner = 400 * element[4] / 600;
         const yInner = 450 - heightInner;
         const yOuter = 450 - heightOuter;
-        return [heightInner, heightOuter, yInner, yOuter];
+        const heightExtra = 400 * element[6] / 600;
+        const yExtra = 450 - heightExtra - heightInner;
+        const heightBorderExtra = 400 * (element[6] + element[4] - element[3]) / 600 - 3;
+        const yBorderExtra = 450 - heightExtra - heightInner;
+        return [heightOuter, heightInner, yOuter, yInner, heightExtra, yExtra, heightBorderExtra, yBorderExtra];
       }).reverse();
 
       const barRects = [];
@@ -20,14 +24,18 @@ class TaskChart extends React.Component {
       const gridLabels = [];
       for (let i = 0; i < 7; i++) {
         barRects.push(<rect key={i} x={85 + i * 100} y={yVals[i][3]} width='50' height={yVals[i][1]} stroke='none' fill='cyan' />);
+        barRects.push(<rect key={i + 14} x={85 + i * 100} y={yVals[i][5]} width='50' height={yVals[i][4]} stroke='none' fill='magenta' />);
         barRects.push(<rect key={i + 7} x={85 + i * 100} y={yVals[i][2]} width='50' height={yVals[i][0]} stroke='blue' strokeWidth='3px' fill='none' />);
-        horizontalTicks.push(<line x1={110 + i * 100} y1='450' x2={110 + i * 100} y2='460' stroke='black' />)
-        textLabels.push(<text x={70 + i * 100} y='480' fill='black'>{this.props.taskData[6 - i][0]}</text>)
-        gridLines.push(<line x1='10' y1={(i + 1) * 50} x2='810' y2={(i + 1) * 50} stroke='black' />)
-        gridLabels.push(<text x='20' y={(i + 2) * 50 - 2}>{(7 - i) * 75}</text>)
+        if (yVals[i][4] !== 0) {
+          barRects.push(<rect key={i + 21} x={85 + i * 100} y={yVals[i][7]} width='50' height={yVals[i][6]} stroke='purple' strokeWidth='3px' fill='none' />);
+        }
+        horizontalTicks.push(<line key={i} x1={110 + i * 100} y1='450' x2={110 + i * 100} y2='460' stroke='black' />)
+        textLabels.push(<text key={i} x={70 + i * 100} y='480' fill='black'>{this.props.taskData[6 - i][0]}</text>)
+        gridLines.push(<line key={i} x1='10' y1={(i + 1) * 50} x2='810' y2={(i + 1) * 50} stroke='black' />)
+        gridLabels.push(<text key={i} x='20' y={(i + 2) * 50 - 2}>{(7 - i) * 75}</text>)
       }
-      gridLines.push(<line x1='10' y1='400' x2='810' y2='400' stroke='black' />)
-      gridLabels.push(<text x='20' y='48' fontWeight='bold' fontSize='20px'>Time (minutes)</text>)
+      gridLines.push(<line key={8} x1='10' y1='400' x2='810' y2='400' stroke='black' />)
+      gridLabels.push(<text key={8} x='20' y='48' fontWeight='bold' fontSize='20px'>Time (minutes)</text>)
 
       return (
         <svg width='820' height='520'>
