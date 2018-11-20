@@ -1,8 +1,7 @@
-.App {
+/*.App {
   text-align: center;
   position: relative;
   top: 50px;
-  left: 500px;
 }
 
 .App-logo {
@@ -23,6 +22,11 @@
 
 .App-link {
   color: #61dafb;
+}*/
+
+body {
+  background-color: #EEE;
+  font-family: monospace;
 }
 
 .progress-bar {
@@ -63,17 +67,46 @@
 
 .progress-display p {
   font-size: 10px;
+  text-align: center;
+}
+
+.container h1 {
+  z-index: 5;
+  position: absolute;
+  left: 50px;
+  font-style: italic;
 }
 
 .outer-div {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 20px 0;
+  align-items: flex-start;
+  margin: 0 auto;
+  position: absolute;
+  left: 50px;
+  top: 55px;
+  background-color: #DDE6DD;
+}
+
+.description {
+  width: 400px;
+}
+
+.description h2 {
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.description p {
+  margin-top: 20px;
+}
+
+svg {
+  background-color: #DDF;
 }
 
 .data-entry {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   background-color: #DDF;
   border: 1px solid black;
@@ -105,13 +138,4 @@
 
 #update-button {
   margin-top: 20px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
