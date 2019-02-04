@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 
-class ProgressBar extends Component {
-  render() {
-    const outerStyle = {
-      width: this.props.width,
-      height: this.props.height
-    };
-    const innerStyle = {
-      width: this.props.innerWidth,
-      height: this.props.innerHeight
-    };
-    const targetStyle = {
-      width: this.props.targetWidth,
-      height: this.props.targetHeight
-    };
-    return (
-      <div className="progress-bar" style={outerStyle}>
-        <div className="inner-bar" style={innerStyle}>
-        </div>
-        <div className="target-bar" style={targetStyle}>
-        </div>
+const ProgressBar = (props) => {
+  const outerStyle = {
+    width: props.width,
+    height: props.height
+  };
+  const innerStyle = {
+    width: props.innerWidth,
+    height: props.innerHeight
+  };
+  const targetStyle = {
+    width: props.targetWidth,
+    height: props.targetHeight
+  };
+  return (
+    <div className="progress-bar" style={outerStyle}>
+      <div className="inner-bar" style={innerStyle}>
       </div>
-    );
-  }
+      <div className="target-bar" style={targetStyle}>
+      </div>
+    </div>
+  );
 }
 
 export default ProgressBar;

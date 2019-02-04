@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ProgressBar from './ProgressBar';
 
-class ProgressDisplay extends Component {
+class ProgressDisplayArea extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -29,13 +29,10 @@ class ProgressDisplay extends Component {
   componentDidMount() {
     this.performFetch();
     this.updateTarget();
-    setInterval(this.performFetch, 50000);
-    setInterval(this.updateTarget, 55000);
-    setInterval(this.updateProgress, 55000);
   }
 
   performFetch() {
-    fetch('http://localhost:3001/taskdata').then(response => {
+    fetch('http://localhost:3001/daytaskdata').then(response => {
       if (response.ok) {
         return response.text();
       } else {
@@ -85,4 +82,4 @@ class ProgressDisplay extends Component {
   }
 }
 
-export default ProgressDisplay;
+export default ProgressDisplayArea;

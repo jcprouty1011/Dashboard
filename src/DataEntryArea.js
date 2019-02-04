@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import DatumForm from './DatumForm';
 
-class DataEntry extends React.Component {
+class DataEntryArea extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,6 +22,7 @@ class DataEntry extends React.Component {
         console.log('Could not get data types.');
       }
     }).then(jsonResponse => {
+      console.log(jsonResponse)
       this.setState({waiting: false,
         dataTypes: jsonResponse});
     });
@@ -46,13 +47,13 @@ class DataEntry extends React.Component {
       return <h2>Awaiting data...</h2>;
     }
 
-    const datumForms = this.state.dataTypes.map((row, i) => {
-      return (
+    const datumForms = this.state.dataTypes.map((row, i) =>
+      (
         <CSSTransition key={row.data} classNames="example" timeout={{ enter: 500, exit: 500 }}>
           <DatumForm key={row.data} data={row.data} label={row.label} clickFunction={this.sendDataToDB} />
         </CSSTransition>
-      );
-    });
+      )
+    );
 
     if (!datumForms[0]) {
       return <h3>All data logged today</h3>;
@@ -66,4 +67,4 @@ class DataEntry extends React.Component {
   }
 }
 
-export default DataEntry;
+export default DataEntryArea;

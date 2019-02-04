@@ -2,7 +2,7 @@ import React from 'react';
 import TaskTable from './TaskTable';
 import TaskChart from './TaskChart';
 
-class TaskDisplay extends React.Component {
+class TaskScoreDisplayArea extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,8 +13,6 @@ class TaskDisplay extends React.Component {
   }
 
   componentDidMount() {
-    //Retrieve data from server
-    //208.113.134.207
     fetch('http://localhost:3001/weektaskdata').then(response => {
       if (response.ok) {
         return response.json();
@@ -22,13 +20,11 @@ class TaskDisplay extends React.Component {
         console.log("Server sent a bad response.")
       }
     }, error => {
-      console.log("Could not get the task data.")
+      console.log("Could not get the task data for Task Display Area.")
     }).then(jsonResponse => {
       this.setState({status: 'chart', taskData: jsonResponse.taskData});
     });
 
-    //TEST CODE
-    //this.setState({taskData: [["Today", 2, 1, 20, 10], ["Yesterday", 3, 2, 30, 20]]});
   }
 
   render() {
@@ -36,4 +32,4 @@ class TaskDisplay extends React.Component {
   }
 }
 
-export default TaskDisplay;
+export default TaskScoreDisplayArea;
